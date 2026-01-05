@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Distinctive font imports */
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap');
+  
+  :root {
+    --font-display: 'Crimson Pro', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  * {
+    @apply border-ink/10;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.02) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  /* Refined typography scale */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Subtle text gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-ink to-ink-lighter bg-clip-text text-transparent;
+  }
+
+  /* Custom section spacing */
+  .section-padding {
+    @apply py-20 md:py-32;
+  }
+
+  /* Gentle hover lift */
+  .hover-lift {
+    @apply transition-transform duration-300 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1;
+  }
+}
+
+/* Remove default focus outline and add custom one */
+@layer base {
+  *:focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper;
+  }
+}
+
+/* Selection color */
+::selection {
+  @apply bg-accent/20 text-ink;
+}
