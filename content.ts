@@ -134,7 +134,7 @@ const contentEn: Content = {
         title: 'VeMo',
         description: 'New project - details coming soon.',
         tech: ['Web Development'],
-        link: '#',
+        link: '',
         year: 'New',
       },
     ],
