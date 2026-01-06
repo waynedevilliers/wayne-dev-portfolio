@@ -263,7 +263,7 @@ const contentDe: Content = {
         title: 'VeMo',
         description: 'Neues Projekt - Details folgen bald.',
         tech: ['Web Development'],
-        link: '#',
+        link: '',
         year: 'Neu',
       },
     ],
