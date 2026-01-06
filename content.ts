@@ -36,6 +36,7 @@ interface Content {
       year: string;
     }>;
     linkText: string;
+    comingSoonText: string;
   };
   process: {
     heading: string;
@@ -138,6 +139,7 @@ const contentEn: Content = {
       },
     ],
     linkText: 'View site',
+    comingSoonText: 'Coming soon',
   },
   process: {
     heading: 'How we work together',
@@ -168,13 +170,13 @@ const contentEn: Content = {
   tech: {
     heading: 'Tech Stack',
     items: [
-      'JavaScript',
-      'React / Node.js',
       'WordPress',
+      'JavaScript / TypeScript',
+      'React / Next.js',
       'HTML / CSS',
-      'Java',
+      'Tailwind CSS',
+      'PHP',
       'MySQL / PostgreSQL',
-      'Jira',
       'Git',
     ],
   },
@@ -266,6 +268,7 @@ const contentDe: Content = {
       },
     ],
     linkText: 'Website ansehen',
+    comingSoonText: 'Demnächst verfügbar',
   },
   process: {
     heading: 'Wie wir zusammenarbeiten',
@@ -297,11 +300,13 @@ const contentDe: Content = {
     heading: 'Werkzeuge, die ich nutze',
     items: [
       'WordPress',
+      'JavaScript / TypeScript',
       'React / Next.js',
-      'TypeScript',
       'HTML / CSS',
       'Tailwind CSS',
-      'Figma',
+      'PHP',
+      'MySQL / PostgreSQL',
+      'Git',
     ],
   },
   contact: {

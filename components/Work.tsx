@@ -60,27 +60,33 @@ export default function Work() {
                   {project.description}
                 </p>
 
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all"
-                >
-                  {content.work.linkText}
-                  <svg 
-                    className="w-5 h-5" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
+                {project.link && project.link !== '#' ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M14 5l7 7m0 0l-7 7m7-7H3" 
-                    />
-                  </svg>
-                </a>
+                    {content.work.linkText}
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 text-ink/40 font-medium">
+                    {content.work.comingSoonText || 'Coming soon'}
+                  </span>
+                )}
               </div>
             </article>
           ))}
