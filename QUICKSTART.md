@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide
+#  Quick Start Guide
 
 ## Get Running in 3 Steps
 
@@ -18,7 +18,7 @@ Go to: http://localhost:3000
 
 ---
 
-## ⚡ First Things to Customize
+##  First Things to Customize
 
 ### Update Your Content (5 minutes)
 Open `content.ts` and change:
@@ -81,7 +81,7 @@ portfolio/
 
 ---
 
-## 🎨 What I Built for You
+##  What I Built for You
 
 ### Design Philosophy: "Refined Editorial Minimalism"
 - Professional but warm
@@ -91,14 +91,14 @@ portfolio/
 - Mobile-first
 
 ### Features
-✅ Bilingual (EN/DE)
-✅ SEO-optimized
-✅ Fully responsive
-✅ Click-to-copy email
-✅ Smooth scroll navigation
-✅ No backend needed
-✅ Easy to customize
-✅ Production-ready
+ Bilingual (EN/DE)
+ SEO-optimized
+ Fully responsive
+ Click-to-copy email
+ Smooth scroll navigation
+ No backend needed
+ Easy to customize
+ Production-ready
 
 ### Color Palette
 - **Text**: Deep charcoal (#1a1a1a)
@@ -113,7 +113,7 @@ portfolio/
 
 ---
 
-## 📝 Content Checklist
+##  Content Checklist
 
 Before launching, update these in `content.ts`:
 
@@ -137,7 +137,7 @@ Before launching, update these in `content.ts`:
 4. Import your repository
 5. Click "Deploy"
 
-Done! ✨
+Done! 
 
 ---
 
@@ -149,7 +149,7 @@ Done! ✨
 
 ---
 
-## 🆘 Common Issues
+##  Common Issues
 
 **Fonts not showing?**
 ```bash
@@ -169,7 +169,7 @@ npm run dev -- -p 3001
 
 ---
 
-## ✅ You're Ready!
+##  You're Ready!
 
 1. Customize content
 2. Test locally
@@ -178,4 +178,4 @@ npm run dev -- -p 3001
 
 **Questions?** Check README.md for detailed docs.
 
-Good luck! 🚀
+Good luck! 

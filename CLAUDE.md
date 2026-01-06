@@ -149,7 +149,7 @@ All metadata is in `app/layout.tsx`. Before deployment:
 
 ## Recent Updates & Features
 
-### ✅ Implemented (2025)
+###  Implemented (2025)
 
 1. **Real-time Language Switching**
    - React Context API implementation
@@ -186,7 +186,7 @@ All metadata is in `app/layout.tsx`. Before deployment:
 
 ## Known Limitations & Future Enhancements
 
-1. **Language switching:** ✅ IMPLEMENTED - Context API with real-time switching
+1. **Language switching:**  IMPLEMENTED - Context API with real-time switching
 
 2. **Project images:** Using placeholders. Replace with real project screenshots using Next.js Image component.
 

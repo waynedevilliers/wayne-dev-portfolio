@@ -8,18 +8,18 @@ A modern, bilingual portfolio website for Wayne de Villiers - Web Developer & De
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
 
-## ✨ Features
+##  Features
 
-- **🌐 Bilingual**: Real-time language switching (EN/DE) without page reload
-- **📱 Fully Responsive**: Mobile hamburger menu, optimized for all screen sizes
-- **⚡ Performance**: CSS-only animations, optimized fonts, Lighthouse 90+ score
-- **🎨 Modern Design**: Clean typography, professional color palette, SVG icons
-- **🔍 SEO Optimized**: Proper metadata, semantic HTML, OpenGraph tags
-- **♿ Accessible**: ARIA labels, keyboard navigation, semantic structure
-- **🎯 Easy to Update**: All content in one file (`content.ts`)
-- **🚀 Production Ready**: Vercel-optimized, secure, no backend needed
+- ** Bilingual**: Real-time language switching (EN/DE) without page reload
+- ** Fully Responsive**: Mobile hamburger menu, optimized for all screen sizes
+- ** Performance**: CSS-only animations, optimized fonts, Lighthouse 90+ score
+- ** Modern Design**: Clean typography, professional color palette, SVG icons
+- ** SEO Optimized**: Proper metadata, semantic HTML, OpenGraph tags
+- ** Accessible**: ARIA labels, keyboard navigation, semantic structure
+- ** Easy to Update**: All content in one file (`content.ts`)
+- ** Production Ready**: Vercel-optimized, secure, no backend needed
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -44,7 +44,7 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 The site will auto-reload when you make changes!
 
-## 📝 Customization Guide
+##  Customization Guide
 
 ### 1. Update Your Content
 
@@ -208,7 +208,7 @@ portfolio/
 └── package.json
 ```
 
-## 🎨 Design Philosophy
+##  Design Philosophy
 
 This portfolio follows a **"Refined Editorial Minimalism"** approach:
 
@@ -218,7 +218,7 @@ This portfolio follows a **"Refined Editorial Minimalism"** approach:
 - **Professional but warm**: Not cold or corporate
 - **Intentional asymmetry**: Visual interest without chaos
 
-## 🚀 Deployment
+##  Deployment
 
 ### Vercel (Recommended)
 
@@ -242,7 +242,7 @@ npm run build
 # Outputs to .next folder (or /out for static export)
 ```
 
-## 🔧 Technical Details
+##  Technical Details
 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
@@ -251,14 +251,14 @@ npm run build
 - **Icons**: Inline SVG
 - **Animations**: CSS-only (no JavaScript libraries)
 
-## 📱 Browser Support
+##  Browser Support
 
 - Chrome/Edge (latest)
 - Firefox (latest)
 - Safari 14+
 - Mobile browsers
 
-## 🆘 Troubleshooting
+##  Troubleshooting
 
 **Fonts not loading?**
 - Check Google Fonts imports in `app/layout.tsx`
@@ -281,7 +281,7 @@ npm run build
 
 This is a template for personal/commercial use. Customize freely!
 
-## 🤝 Support
+##  Support
 
 For questions or issues:
 1. Check this README first
@@ -300,4 +300,4 @@ For questions or issues:
 - [ ] Test on mobile devices
 - [ ] Run `npm run build` to check for errors
 
-Good luck! 🚀
+Good luck! 

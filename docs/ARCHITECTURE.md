@@ -187,12 +187,12 @@ fonts: {
 ## Performance Considerations
 
 **Optimizations:**
-- ✅ CSS-only animations (no Framer Motion)
-- ✅ No external icon libraries (inline SVG)
-- ✅ Minimal JavaScript bundle
-- ✅ Font loading optimized (`display: swap`)
-- ✅ No runtime API calls
-- ✅ Static export capable
+-  CSS-only animations (no Framer Motion)
+-  No external icon libraries (inline SVG)
+-  Minimal JavaScript bundle
+-  Font loading optimized (`display: swap`)
+-  No runtime API calls
+-  Static export capable
 
 **Metrics Goals:**
 - Lighthouse Performance: > 90
