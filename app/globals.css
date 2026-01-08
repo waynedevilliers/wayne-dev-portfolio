@@ -50,9 +50,9 @@
     @apply bg-gradient-to-r from-ink to-ink-lighter bg-clip-text text-transparent;
   }
 
-  /* Custom section spacing */
+  /* Custom section spacing - mobile optimized */
   .section-padding {
-    @apply py-20 md:py-32;
+    @apply py-12 sm:py-16 md:py-24 lg:py-32;
   }
 
   /* Gentle hover lift */
