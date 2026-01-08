@@ -45,6 +45,7 @@ export default function Work() {
                     src={getImagePath(project.title)}
                     alt={project.title}
                     fill
+                    priority={index === 0}
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={() => setImageErrors(prev => ({ ...prev, [index]: true }))}
                     sizes="(max-width: 768px) 100vw, 50vw"
