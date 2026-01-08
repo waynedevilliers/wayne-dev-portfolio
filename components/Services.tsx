@@ -52,33 +52,33 @@ export default function Services() {
   const { content } = useLanguage();
 
   return (
-    <section id="services" className="section-padding px-6 bg-paper-dark">
+    <section id="services" className="section-padding px-4 sm:px-6 bg-paper-dark">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <h2 className="text-4xl md:text-5xl font-display font-semibold text-ink mb-4">
+        <div className="max-w-3xl mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold text-ink mb-3 sm:mb-4">
             {content.services.heading}
           </h2>
-          <p className="text-xl text-ink-lighter">
+          <p className="text-lg sm:text-xl text-ink-lighter">
             {content.services.subheading}
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
           {content.services.items.map((service, index) => (
             <div
               key={service.title}
-              className="group p-8 bg-paper rounded-2xl border border-ink/5 hover:border-ink/10 transition-all hover-lift"
+              className="group p-6 sm:p-8 bg-paper rounded-2xl border border-ink/5 hover:border-ink/10 transition-all hover-lift"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="mb-4">
+              <div className="mb-3 sm:mb-4">
                 <ServiceIcon icon={service.icon} />
               </div>
-              <h3 className="text-2xl font-display font-semibold text-ink mb-3">
+              <h3 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-2 sm:mb-3">
                 {service.title}
               </h3>
-              <p className="text-ink-lighter leading-relaxed">
+              <p className="text-sm sm:text-base text-ink-lighter leading-relaxed">
                 {service.description}
               </p>
             </div>
