@@ -2,6 +2,35 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Core Development Rules
+
+**CRITICAL: Follow these rules for ALL work in this repository:**
+
+1. **Git Workflow**: ALWAYS create a feature branch and work on it. NEVER work directly on main branch.
+   - Branch naming: `feature/description`, `fix/description`, `chore/description`, `test/description`
+   - Create PR for all changes
+   - Follow GitHub coding standards
+
+2. **Testing**: Write tests for all important functions, components, and features.
+   - Use Jest and React Testing Library
+   - Run `npm test` before committing
+   - Aim for comprehensive test coverage
+
+3. **Follow Instructions**: Always follow instructions given. Do not come up with own ideas unless explicitly asked.
+   - Stick to the task at hand
+   - Ask clarifying questions if requirements are unclear
+   - Only suggest alternatives when requested
+
+4. **Code Quality**: Code smartly and maintain high standards.
+   - Follow GitHub coding standards
+   - Write clean, readable, maintainable code
+   - Use TypeScript strictly
+   - Follow existing patterns in the codebase
+
+5. **Design Standards**: Do not use cheesy emojis in code, commits, or UI unless explicitly requested.
+   - Use professional icons, symbols, or CSS effects instead
+   - Keep communication clear and professional
+
 ## Project Overview
 
 **wayne.dev** is a modern, bilingual (EN/DE) portfolio website for Wayne de Villiers, a web developer specializing in WordPress development, landing pages, SEO, and web applications. Built as a high-performance single-page application with real-time language switching.
