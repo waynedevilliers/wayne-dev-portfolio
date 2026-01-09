@@ -1,9 +1,9 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useIntlayer } from 'next-intlayer';
 
 export default function Hero() {
-  const { content } = useLanguage();
+  const { title, description, cta } = useIntlayer('hero');
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 pb-12">
       <div className="max-w-4xl mx-auto text-center w-full">
@@ -12,7 +12,7 @@ export default function Hero() {
           className="inline-block mb-6 text-sm font-medium text-ink-lighter uppercase tracking-wider"
           style={{ animationDelay: '0.1s' }}
         >
-          {content.hero.title}
+          {title}
         </div>
 
         <h1
@@ -33,7 +33,7 @@ export default function Hero() {
           className="text-lg sm:text-xl md:text-2xl text-ink-lighter leading-relaxed mb-8 sm:mb-12 max-w-3xl mx-auto px-2"
           style={{ animationDelay: '0.3s' }}
         >
-          {content.hero.description}
+          {description}
         </p>
         
         <a
@@ -41,7 +41,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-accent text-white rounded-full font-medium hover:bg-accent-dark transition-all hover-lift text-sm sm:text-base"
           style={{ animationDelay: '0.4s' }}
         >
-          {content.hero.cta}
+          {cta}
           <svg
             className="w-4 h-4 sm:w-5 sm:h-5"
             fill="none"

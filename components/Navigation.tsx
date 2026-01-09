@@ -1,10 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useIntlayer } from 'next-intlayer';
+import { useLocale } from 'next-intlayer';
+import { useChangeLocale } from 'next-intlayer';
 
 export default function Navigation() {
-  const { language, setLanguage, content } = useLanguage();
+  const { services, work, process, contact } = useIntlayer('nav');
+  const { locale } = useLocale();
+  const { changeLocale } = useChangeLocale();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -38,42 +42,42 @@ export default function Navigation() {
               onClick={() => scrollToSection('services')}
               className="text-sm text-ink-lighter hover:text-ink transition-colors"
             >
-              {content.nav.services}
+              {services}
             </button>
             <button
               onClick={() => scrollToSection('work')}
               className="text-sm text-ink-lighter hover:text-ink transition-colors"
             >
-              {content.nav.work}
+              {work}
             </button>
             <button
               onClick={() => scrollToSection('process')}
               className="text-sm text-ink-lighter hover:text-ink transition-colors"
             >
-              {content.nav.process}
+              {process}
             </button>
             <button
               onClick={() => scrollToSection('contact')}
               className="text-sm text-ink-lighter hover:text-ink transition-colors"
             >
-              {content.nav.contact}
+              {contact}
             </button>
 
             {/* Language Switcher */}
             <div className="flex items-center gap-2 ml-2 lg:ml-4 border-l border-ink/10 pl-2 lg:pl-4">
               <button
-                onClick={() => setLanguage('en')}
+                onClick={() => changeLocale('en')}
                 className={`text-xs font-medium transition-colors ${
-                  language === 'en' ? 'text-ink' : 'text-ink-lighter hover:text-ink'
+                  locale === 'en' ? 'text-ink' : 'text-ink-lighter hover:text-ink'
                 }`}
               >
                 EN
               </button>
               <span className="text-ink/20">|</span>
               <button
-                onClick={() => setLanguage('de')}
+                onClick={() => changeLocale('de')}
                 className={`text-xs font-medium transition-colors ${
-                  language === 'de' ? 'text-ink' : 'text-ink-lighter hover:text-ink'
+                  locale === 'de' ? 'text-ink' : 'text-ink-lighter hover:text-ink'
                 }`}
               >
                 DE
@@ -131,25 +135,25 @@ export default function Navigation() {
                 onClick={() => scrollToSection('services')}
                 className="text-left py-2 text-ink-lighter hover:text-accent transition-colors"
               >
-                {content.nav.services}
+                {services}
               </button>
               <button
                 onClick={() => scrollToSection('work')}
                 className="text-left py-2 text-ink-lighter hover:text-accent transition-colors"
               >
-                {content.nav.work}
+                {work}
               </button>
               <button
                 onClick={() => scrollToSection('process')}
                 className="text-left py-2 text-ink-lighter hover:text-accent transition-colors"
               >
-                {content.nav.process}
+                {process}
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="text-left py-2 text-ink-lighter hover:text-accent transition-colors"
               >
-                {content.nav.contact}
+                {contact}
               </button>
             </div>
           </div>

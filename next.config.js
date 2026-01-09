@@ -1,8 +1,10 @@
+const { withIntlayer } = require('next-intlayer/server');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  
+
   // Image optimization configuration
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -15,4 +17,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withIntlayer(nextConfig);
