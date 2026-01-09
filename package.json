@@ -14,6 +14,7 @@
     "intlayer": "7.5.11",
     "next": "14.2.35",
     "next-intl": "4.7.0",
+    "next-intlayer": "7.5.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -25,6 +26,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
+    "ignore-loader": "0.1.2",
     "jest": "30.2.0",
     "jest-environment-jsdom": "30.2.0",
     "postcss": "^8.4.38",

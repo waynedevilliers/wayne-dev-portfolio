@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useIntlayer } from 'next-intlayer';
 
 // Icon component that renders clean SVG icons
 function ServiceIcon({ icon }: { icon: string }) {
@@ -49,7 +49,7 @@ function ServiceIcon({ icon }: { icon: string }) {
 }
 
 export default function Services() {
-  const { content } = useLanguage();
+  const { heading, subheading, items } = useIntlayer('services');
 
   return (
     <section id="services" className="section-padding px-4 sm:px-6 bg-paper-dark">
@@ -57,16 +57,16 @@ export default function Services() {
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold text-ink mb-3 sm:mb-4">
-            {content.services.heading}
+            {heading}
           </h2>
           <p className="text-lg sm:text-xl text-ink-lighter">
-            {content.services.subheading}
+            {subheading}
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
-          {content.services.items.map((service, index) => (
+          {items.map((service, index) => (
             <div
               key={service.title}
               className="group p-6 sm:p-8 bg-paper rounded-2xl border border-ink/5 hover:border-ink/10 transition-all hover-lift"

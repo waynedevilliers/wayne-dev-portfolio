@@ -1,11 +1,11 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useIntlayer } from 'next-intlayer';
 import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Work() {
-  const { content } = useLanguage();
+  const { heading, subheading, projects, linkText, comingSoonText } = useIntlayer('work');
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
   // Generate image filename from project title
@@ -23,16 +23,16 @@ export default function Work() {
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold text-ink mb-3 sm:mb-4">
-            {content.work.heading}
+            {heading}
           </h2>
           <p className="text-lg sm:text-xl text-ink-lighter">
-            {content.work.subheading}
+            {subheading}
           </p>
         </div>
 
         {/* Projects Grid */}
         <div className="space-y-10 sm:space-y-12">
-          {content.work.projects.map((project, index) => (
+          {projects.map((project, index) => (
             <article
               key={project.title}
               className="group grid md:grid-cols-12 gap-6 sm:gap-8 items-center"
@@ -91,7 +91,7 @@ export default function Work() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all"
                   >
-                    {content.work.linkText}
+                    {linkText}
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -108,7 +108,7 @@ export default function Work() {
                   </a>
                 ) : (
                   <span className="inline-flex items-center gap-2 text-ink/40 font-medium">
-                    {content.work.comingSoonText || 'Coming soon'}
+                    {comingSoonText || 'Coming soon'}
                   </span>
                 )}
               </div>

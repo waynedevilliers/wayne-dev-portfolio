@@ -1,9 +1,10 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useIntlayer } from 'next-intlayer';
 
 export default function Process() {
-  const { content } = useLanguage();
+  const { heading, subheading, steps } = useIntlayer('process');
+  const { heading: techHeading, items: techItems } = useIntlayer('tech');
 
   return (
     <section id="process" className="section-padding px-4 sm:px-6 bg-paper-dark">
@@ -11,16 +12,16 @@ export default function Process() {
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold text-ink mb-3 sm:mb-4">
-            {content.process.heading}
+            {heading}
           </h2>
           <p className="text-lg sm:text-xl text-ink-lighter">
-            {content.process.subheading}
+            {subheading}
           </p>
         </div>
 
         {/* Process Steps */}
         <div className="grid sm:grid-cols-2 gap-x-8 sm:gap-x-16 gap-y-8 sm:gap-y-12">
-          {content.process.steps.map((step, index) => (
+          {steps.map((step, index) => (
             <div
               key={step.number}
               className="relative"
@@ -45,10 +46,10 @@ export default function Process() {
         {/* Tech Stack */}
         <div className="mt-12 sm:mt-16 lg:mt-20 pt-12 sm:pt-16 border-t border-ink/10">
           <h3 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-6 sm:mb-8">
-            {content.tech.heading}
+            {techHeading}
           </h3>
           <div className="flex flex-wrap gap-3 sm:gap-4">
-            {content.tech.items.map((tech) => (
+            {techItems.map((tech) => (
               <span
                 key={tech}
                 className="px-4 sm:px-6 py-2 sm:py-3 bg-paper text-ink-lighter rounded-full border border-ink/5 hover:border-accent/30 hover:text-accent transition-all text-sm sm:text-base"
