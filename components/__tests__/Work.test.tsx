@@ -228,8 +228,16 @@ describe('Work Component', () => {
       );
 
       // Check that all projects with URLs are rendered correctly
-      const elluLink = screen.getByRole('link', { name: /View site/i }).closest('a[href*="ellustudios.com"]');
+      const allLinks = screen.getAllByRole('link', { name: /View site|Website ansehen/i });
+      const elluLink = allLinks.find(link => link.getAttribute('href')?.includes('ellustudios.com'));
       expect(elluLink).toBeInTheDocument();
+
+      // Verify other project URLs as well
+      const cultureLink = allLinks.find(link => link.getAttribute('href')?.includes('culture-academy.org'));
+      expect(cultureLink).toBeInTheDocument();
+
+      const droneLink = allLinks.find(link => link.getAttribute('href')?.includes('drone-services-pro'));
+      expect(droneLink).toBeInTheDocument();
     });
   });
 
