@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Work from '../Work';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { allContent } from '@/content';
 
 // Mock Next.js Image component
 jest.mock('next/image', () => ({
@@ -22,178 +23,328 @@ jest.mock('next/image', () => ({
 }));
 
 describe('Work Component', () => {
-  it('renders the work section with correct heading', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
+  describe('Structure and Layout', () => {
+    it('renders the work section with proper semantic structure', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
 
-    expect(screen.getByText('Projects')).toBeInTheDocument();
-    expect(screen.getByText(/Current freelance work and recent projects/i)).toBeInTheDocument();
-  });
+      // Check for section with proper ID
+      const section = container.querySelector('section#work');
+      expect(section).toBeInTheDocument();
 
-  it('renders all 5 project cards', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
-
-    // Check for all project titles
-    expect(screen.getByText('ELLU Studios')).toBeInTheDocument();
-    expect(screen.getByText('Culture Academy')).toBeInTheDocument();
-    expect(screen.getByText('Musikleben')).toBeInTheDocument();
-    expect(screen.getByText('ELLU Studios Fashion Assistant')).toBeInTheDocument();
-    expect(screen.getByText('Mainflug Drone Services')).toBeInTheDocument();
-  });
-
-  it('renders new projects with correct information', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
-
-    // ELLU Studios Fashion Assistant
-    expect(screen.getByText(/AI-powered chatbot specialized in fashion design education/i)).toBeInTheDocument();
-    expect(screen.getAllByText('Next.js').length).toBeGreaterThan(0); // Multiple projects use Next.js
-    expect(screen.getByText('OpenAI GPT-4o')).toBeInTheDocument();
-
-    // Mainflug Drone Services
-    expect(screen.getByText(/Professional drone services platform/i)).toBeInTheDocument();
-    // Mainflug uses Next.js and React as first 2 tech items, so those should be visible
-    expect(screen.getAllByText('React').length).toBeGreaterThan(0);
-  });
-
-  it('renders images with correct src paths', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
-
-    const images = screen.getAllByRole('img');
-
-    // Check that images have correct paths
-    expect(images[0]).toHaveAttribute('src', '/images/projects/ellu-studios.png');
-    expect(images[1]).toHaveAttribute('src', '/images/projects/culture-academy.png');
-    expect(images[2]).toHaveAttribute('src', '/images/projects/musikleben.png');
-    expect(images[3]).toHaveAttribute('src', '/images/projects/ellu-studios-fashion-assistant.png');
-    expect(images[4]).toHaveAttribute('src', '/images/projects/mainflug-drone-services.png');
-  });
-
-  it('sets priority prop only on first image for LCP optimization', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
-
-    const images = screen.getAllByRole('img');
-
-    // First image should have priority
-    expect(images[0]).toHaveAttribute('data-priority', 'true');
-
-    // Remaining images should NOT have priority (lazy loaded)
-    expect(images[1]).toHaveAttribute('data-priority', 'false');
-    expect(images[2]).toHaveAttribute('data-priority', 'false');
-    expect(images[3]).toHaveAttribute('data-priority', 'false');
-    expect(images[4]).toHaveAttribute('data-priority', 'false');
-  });
-
-  it('displays project links for projects with URLs', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
-
-    const viewSiteLinks = screen.getAllByRole('link', { name: /View site/i });
-
-    // All project links should have proper attributes
-    viewSiteLinks.forEach(link => {
-      expect(link).toHaveAttribute('target', '_blank');
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      // Check for heading (language-agnostic)
+      const headings = screen.getAllByRole('heading');
+      expect(headings.length).toBeGreaterThan(0);
+      expect(headings[0]).toBeInTheDocument();
     });
 
-    // Check that we have at least 4 links (4 projects have URLs)
-    expect(viewSiteLinks.length).toBeGreaterThanOrEqual(4);
+    it('renders all 5 project cards as articles', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      // Query by semantic article elements (language-agnostic)
+      const projectArticles = container.querySelectorAll('article');
+      expect(projectArticles).toHaveLength(5);
+    });
+
+    it('applies mobile responsive classes to section', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      const section = container.querySelector('section');
+      expect(section).toHaveClass('px-4', 'sm:px-6');
+      expect(section).toHaveClass('section-padding');
+    });
+
+    it('applies responsive typography classes to heading', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      const heading = screen.getAllByRole('heading')[0];
+      expect(heading).toHaveClass('text-3xl', 'sm:text-4xl', 'md:text-5xl');
+    });
   });
 
-  it('generates correct image paths from project titles', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
+  describe('Content Rendering - English', () => {
+    it('renders English content correctly', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
 
-    const images = screen.getAllByRole('img');
+      // Verify English content from content.ts
+      expect(screen.getByText(allContent.en.work.heading)).toBeInTheDocument();
+      expect(screen.getByText(allContent.en.work.subheading)).toBeInTheDocument();
 
-    // Test that special characters and spaces are handled correctly
-    // "ELLU Studios Fashion Assistant" -> "ellu-studios-fashion-assistant.png"
-    const fashionAssistantImage = images[3];
-    expect(fashionAssistantImage).toHaveAttribute('src', '/images/projects/ellu-studios-fashion-assistant.png');
+      // Check all project titles
+      allContent.en.work.projects.forEach(project => {
+        expect(screen.getByText(project.title)).toBeInTheDocument();
+      });
+    });
 
-    // "Mainflug Drone Services" -> "mainflug-drone-services.png"
-    const droneServicesImage = images[4];
-    expect(droneServicesImage).toHaveAttribute('src', '/images/projects/mainflug-drone-services.png');
+    it('renders new projects with correct English descriptions', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      // ELLU Studios Fashion Assistant
+      expect(screen.getByText(/AI-powered chatbot/i)).toBeInTheDocument();
+      expect(screen.getByText('OpenAI GPT-4o')).toBeInTheDocument();
+
+      // Mainflug Drone Services
+      expect(screen.getByText(/Professional drone services platform/i)).toBeInTheDocument();
+    });
   });
 
-  it('applies mobile responsive classes to section', () => {
-    const { container } = render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
+  describe('Image System', () => {
+    it('renders images with correct PNG paths', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
 
-    const section = container.querySelector('section');
-    expect(section).toHaveClass('px-4', 'sm:px-6');
+      const images = screen.getAllByRole('img');
+
+      // Verify all 5 images have correct PNG paths
+      expect(images[0]).toHaveAttribute('src', '/images/projects/ellu-studios.png');
+      expect(images[1]).toHaveAttribute('src', '/images/projects/culture-academy.png');
+      expect(images[2]).toHaveAttribute('src', '/images/projects/musikleben.png');
+      expect(images[3]).toHaveAttribute('src', '/images/projects/ellu-studios-fashion-assistant.png');
+      expect(images[4]).toHaveAttribute('src', '/images/projects/mainflug-drone-services.png');
+    });
+
+    it('sets priority prop only on first image for LCP optimization', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      const images = screen.getAllByRole('img');
+
+      // First image should have priority=true
+      expect(images[0]).toHaveAttribute('data-priority', 'true');
+
+      // Remaining images should have priority=false (lazy loaded)
+      for (let i = 1; i < images.length; i++) {
+        expect(images[i]).toHaveAttribute('data-priority', 'false');
+      }
+    });
+
+    it('generates correct image paths from project titles', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      const images = screen.getAllByRole('img');
+
+      // Test that special characters and spaces are handled correctly
+      // "ELLU Studios Fashion Assistant" -> "ellu-studios-fashion-assistant.png"
+      expect(images[3]).toHaveAttribute('src', '/images/projects/ellu-studios-fashion-assistant.png');
+
+      // "Mainflug Drone Services" -> "mainflug-drone-services.png"
+      expect(images[4]).toHaveAttribute('src', '/images/projects/mainflug-drone-services.png');
+    });
+
+    it('displays fallback placeholder when image fails to load', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      const firstImage = screen.getAllByRole('img')[0];
+
+      // Trigger the onError callback
+      fireEvent.error(firstImage);
+
+      // After error, fallback should display (numbered placeholder)
+      // The fallback is a div with the index number
+      const placeholders = container.querySelectorAll('.text-ink\\/20');
+      expect(placeholders.length).toBeGreaterThan(0);
+    });
+
+    it('passes correct alt text to images', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      const images = screen.getAllByRole('img');
+
+      // Verify alt text matches project titles
+      expect(images[0]).toHaveAttribute('alt', 'ELLU Studios');
+      expect(images[1]).toHaveAttribute('alt', 'Culture Academy');
+      expect(images[2]).toHaveAttribute('alt', 'Musikleben');
+      expect(images[3]).toHaveAttribute('alt', 'ELLU Studios Fashion Assistant');
+      expect(images[4]).toHaveAttribute('alt', 'Mainflug Drone Services');
+    });
   });
 
-  it('applies responsive typography classes to heading', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
+  describe('Project Links', () => {
+    it('displays project links with proper security attributes', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
 
-    const heading = screen.getByRole('heading', { name: /Projects/i });
-    expect(heading).toHaveClass('text-3xl', 'sm:text-4xl', 'md:text-5xl');
+      const viewSiteLinks = screen.getAllByRole('link', { name: /View site|Website ansehen/i });
+
+      // All project links should have proper attributes for security
+      viewSiteLinks.forEach(link => {
+        expect(link).toHaveAttribute('target', '_blank');
+        expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      });
+
+      // Verify we have at least 4 working links (5 projects, but one might not have URL)
+      expect(viewSiteLinks.length).toBeGreaterThanOrEqual(4);
+    });
+
+    it('renders correct URLs for each project', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      // Check that all projects with URLs are rendered correctly
+      const elluLink = screen.getByRole('link', { name: /View site/i }).closest('a[href*="ellustudios.com"]');
+      expect(elluLink).toBeInTheDocument();
+    });
   });
 
-  it('renders project years correctly', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
+  describe('Tech Badges', () => {
+    it('limits tech badges to first 2 technologies per project', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
 
-    expect(screen.getByText('Current')).toBeInTheDocument();
-    expect(screen.getByText('Ongoing')).toBeInTheDocument();
-    expect(screen.getByText('2024-2025')).toBeInTheDocument();
-    expect(screen.getAllByText('2025')).toHaveLength(2); // Two 2025 projects
+      // Get all project articles
+      const projectArticles = container.querySelectorAll('article');
+
+      projectArticles.forEach((article, index) => {
+        // Find tech badges within this specific project article
+        const techBadges = article.querySelectorAll('.rounded-full.bg-ink\\/5');
+
+        // Each project should show at most 2 tech badges
+        expect(techBadges.length).toBeLessThanOrEqual(2);
+
+        // For projects with more than 2 technologies, verify only first 2 are shown
+        const project = allContent.en.work.projects[index];
+        if (project.tech.length > 2) {
+          expect(techBadges.length).toBe(2);
+
+          // Verify the first 2 tech items are displayed
+          expect(article.textContent).toContain(project.tech[0]);
+          expect(article.textContent).toContain(project.tech[1]);
+
+          // Verify the 3rd tech item is NOT displayed
+          if (project.tech[2]) {
+            const thirdTech = project.tech[2];
+            // The third tech should not be in the badge section
+            const techContainer = article.querySelector('.flex.flex-wrap.gap-2');
+            expect(techContainer?.textContent).not.toContain(thirdTech);
+          }
+        }
+      });
+    });
+
+    it('displays correct technologies for new projects', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      // ELLU Fashion Assistant shows Next.js and OpenAI GPT-4o (first 2)
+      expect(screen.getAllByText('Next.js').length).toBeGreaterThan(0);
+      expect(screen.getByText('OpenAI GPT-4o')).toBeInTheDocument();
+
+      // Mainflug shows Next.js and React (first 2)
+      expect(screen.getAllByText('React').length).toBeGreaterThan(0);
+    });
   });
 
-  it('limits tech badges to first 2 technologies per project', () => {
-    render(
-      <LanguageProvider>
-        <Work />
-      </LanguageProvider>
-    );
+  describe('Project Metadata', () => {
+    it('renders project years correctly', () => {
+      render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
 
-    // Get all tech badge spans (they have specific styling classes)
-    const allTechBadges = screen.getAllByText(/WordPress|PHP|JavaScript|Next\.js|OpenAI GPT-4o|RAG|TypeScript|React|HTML\/CSS|Responsive Design|Web Development|Content Management|SEO/i);
+      // Check years are displayed
+      expect(screen.getByText('Current')).toBeInTheDocument();
+      expect(screen.getByText('Ongoing')).toBeInTheDocument();
+      expect(screen.getByText('2024-2025')).toBeInTheDocument();
+      expect(screen.getAllByText('2025')).toHaveLength(2); // Two 2025 projects
+    });
 
-    // We should have tech badges visible
-    expect(allTechBadges.length).toBeGreaterThan(0);
+    it('displays year badges with proper styling', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
 
-    // Each project should show at most 2 tech badges
-    // This is verified by the slice(0, 2) in the component code
-    // We can verify this by checking that we don't see all technologies for projects with more than 2
+      // Year badges should have accent color
+      const yearBadges = container.querySelectorAll('.text-accent');
+      expect(yearBadges.length).toBeGreaterThanOrEqual(5); // One per project
+    });
   });
 
-  // Note: German language test would require clicking the language switcher
-  // or extending LanguageProvider to accept initialLanguage prop
-  // Skipping for now as it requires user interaction testing
+  describe('Responsive Grid Layout', () => {
+    it('applies responsive grid classes to project cards', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      const projectArticles = container.querySelectorAll('article');
+
+      projectArticles.forEach(article => {
+        // Each article should have responsive grid classes
+        expect(article).toHaveClass('md:grid-cols-12');
+        expect(article).toHaveClass('gap-6', 'sm:gap-8');
+      });
+    });
+
+    it('applies staggered animation delays to projects', () => {
+      const { container } = render(
+        <LanguageProvider>
+          <Work />
+        </LanguageProvider>
+      );
+
+      const projectArticles = container.querySelectorAll('article');
+
+      projectArticles.forEach((article, index) => {
+        const style = article.getAttribute('style');
+        expect(style).toContain(`animation-delay: ${index * 0.1}s`);
+      });
+    });
+  });
 });
