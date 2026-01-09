@@ -23,7 +23,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html className={`${crimsonPro.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${crimsonPro.variable} ${dmSans.variable}`}>
       <body>
         <IntlayerClientProvider>
           {children}

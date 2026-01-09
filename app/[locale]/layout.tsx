@@ -2,6 +2,10 @@ import { IntlayerServerProvider } from 'next-intlayer/server';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'de' }];
+}
+
 export const metadata: Metadata = {
   title: 'wayne.dev | Web Developer | WordPress | Landing Pages | SEO',
   description:

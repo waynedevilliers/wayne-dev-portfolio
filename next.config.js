@@ -70,11 +70,12 @@ const nextConfig = {
 
     // Fallback for Node.js modules in client bundle
     if (!isServer) {
+      const path = require('path');
+
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
         'fs/promises': false,
-        module: false,
         child_process: false,
         net: false,
         tls: false,
@@ -88,6 +89,12 @@ const nextConfig = {
         events: false,
         assert: false,
         string_decoder: false,
+      };
+
+      // Provide polyfill for 'module' package
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        module: path.resolve(__dirname, 'polyfills/module.js'),
       };
     } else {
       // Mark esbuild as external for server-side to prevent bundling
