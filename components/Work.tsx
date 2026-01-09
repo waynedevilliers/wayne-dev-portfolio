@@ -9,8 +9,9 @@ export default function Work() {
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
   // Generate image filename from project title
-  const getImagePath = (title: string) => {
-    const filename = title
+  const getImagePath = (title: any) => {
+    const titleStr = String(title);
+    const filename = titleStr
       .toLowerCase()
       .replace(/\s+/g, '-')
       .replace(/[^a-z0-9-]/g, '');

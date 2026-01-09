@@ -1,0 +1,64 @@
+/* eslint-disable */
+export default {
+  "key": "process",
+  "content": {
+    "nodeType": "translation",
+    "translation": {
+      "en": {
+        "heading": "How we work together",
+        "subheading": "A straightforward process, no corporate nonsense",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Discovery",
+            "description": "We talk about your business, goals, and audience. I ask questions to understand what success looks like for you."
+          },
+          {
+            "number": "02",
+            "title": "Plan & Design",
+            "description": "I create a clear plan and initial designs. You review and we refine until it feels right."
+          },
+          {
+            "number": "03",
+            "title": "Build & Test",
+            "description": "I build your site with clean code, test thoroughly across devices, and keep you updated on progress."
+          },
+          {
+            "number": "04",
+            "title": "Launch & Support",
+            "description": "We launch together, and I stay available for questions, updates, and ongoing improvements."
+          }
+        ]
+      },
+      "de": {
+        "heading": "Wie wir zusammenarbeiten",
+        "subheading": "Ein unkomplizierter Prozess, kein Unternehmensjargon",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Entdeckung",
+            "description": "Wir sprechen über dein Unternehmen, deine Ziele und deine Zielgruppe. Ich stelle Fragen, um zu verstehen, wie Erfolg für dich aussieht."
+          },
+          {
+            "number": "02",
+            "title": "Planung & Design",
+            "description": "Ich erstelle einen klaren Plan und erste Designs. Du prüfst und wir verfeinern, bis es sich richtig anfühlt."
+          },
+          {
+            "number": "03",
+            "title": "Entwicklung & Test",
+            "description": "Ich baue deine Seite mit sauberem Code, teste gründlich auf allen Geräten und halte dich über den Fortschritt auf dem Laufenden."
+          },
+          {
+            "number": "04",
+            "title": "Launch & Support",
+            "description": "Wir starten gemeinsam, und ich bleibe für Fragen, Updates und laufende Verbesserungen erreichbar."
+          }
+        ]
+      }
+    }
+  },
+  "localIds": [
+    "process::local::src/content/process.content.ts"
+  ]
+} as const;

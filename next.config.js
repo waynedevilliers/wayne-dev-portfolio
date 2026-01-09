@@ -89,6 +89,7 @@ const nextConfig = {
         events: false,
         assert: false,
         string_decoder: false,
+        esbuild: false, // Prevent esbuild from being bundled in browser
       };
 
       // Provide polyfill for 'module' package

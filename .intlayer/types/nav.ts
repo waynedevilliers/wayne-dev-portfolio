@@ -1,0 +1,24 @@
+/* eslint-disable */
+export default {
+  "key": "nav",
+  "content": {
+    "nodeType": "translation",
+    "translation": {
+      "en": {
+        "services": "Services",
+        "work": "Work",
+        "process": "Process",
+        "contact": "Contact"
+      },
+      "de": {
+        "services": "Leistungen",
+        "work": "Projekte",
+        "process": "Prozess",
+        "contact": "Kontakt"
+      }
+    }
+  },
+  "localIds": [
+    "nav::local::src/content/nav.content.ts"
+  ]
+} as const;

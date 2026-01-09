@@ -1,0 +1,64 @@
+/* eslint-disable */
+export default {
+  "key": "services",
+  "content": {
+    "nodeType": "translation",
+    "translation": {
+      "en": {
+        "heading": "Services",
+        "subheading": "Complete web solutions for your business",
+        "items": [
+          {
+            "title": "WordPress Development",
+            "description": "Custom WordPress sites, themes, and plugins. E-commerce integration, content management systems, and ongoing maintenance. Fast, secure, and easy to manage.",
+            "icon": "wordpress"
+          },
+          {
+            "title": "Landing Pages & Web Design",
+            "description": "High-converting landing pages and modern website design. Responsive layouts, fast loading times, and optimized for conversions. Built with React, Next.js, or WordPress.",
+            "icon": "code"
+          },
+          {
+            "title": "SEO & Email Campaigns",
+            "description": "Search engine optimization to increase visibility. Email marketing integration, newsletter campaigns, and automation. Analytics setup and performance tracking.",
+            "icon": "chart"
+          },
+          {
+            "title": "Forms, Chatbots & Integrations",
+            "description": "Custom contact forms, lead capture systems, and chatbot integration. Third-party API connections, payment gateways, and booking systems.",
+            "icon": "tools"
+          }
+        ]
+      },
+      "de": {
+        "heading": "Leistungen",
+        "subheading": "Komplette Web-Lösungen für Ihr Unternehmen",
+        "items": [
+          {
+            "title": "WordPress-Entwicklung",
+            "description": "Maßgeschneiderte WordPress-Sites, Themes und Plugins. E-Commerce-Integration, Content-Management-Systeme und laufende Wartung. Schnell, sicher und einfach zu verwalten.",
+            "icon": "wordpress"
+          },
+          {
+            "title": "Landing Pages & Webdesign",
+            "description": "Hochkonvertierende Landing Pages und modernes Webdesign. Responsive Layouts, schnelle Ladezeiten und conversion-optimiert. Gebaut mit React, Next.js oder WordPress.",
+            "icon": "code"
+          },
+          {
+            "title": "SEO & E-Mail-Kampagnen",
+            "description": "Suchmaschinenoptimierung für mehr Sichtbarkeit. E-Mail-Marketing-Integration, Newsletter-Kampagnen und Automatisierung. Analytics-Setup und Performance-Tracking.",
+            "icon": "chart"
+          },
+          {
+            "title": "Formulare, Chatbots & Integrationen",
+            "description": "Individuelle Kontaktformulare, Lead-Capture-Systeme und Chatbot-Integration. Drittanbieter-API-Verbindungen, Payment-Gateways und Buchungssysteme.",
+            "icon": "tools"
+          }
+        ]
+      }
+    }
+  },
+  "localIds": [
+    "services::local::src/content/services.content.ts"
+  ]
+} as const;
