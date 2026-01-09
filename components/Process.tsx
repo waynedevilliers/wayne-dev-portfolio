@@ -21,7 +21,7 @@ export default function Process() {
 
         {/* Process Steps */}
         <div className="grid sm:grid-cols-2 gap-x-8 sm:gap-x-16 gap-y-8 sm:gap-y-12">
-          {steps.map((step, index) => (
+          {steps.map((step: { number: string; title: string; description: string }, index: number) => (
             <div
               key={step.number}
               className="relative"
@@ -49,7 +49,7 @@ export default function Process() {
             {techHeading}
           </h3>
           <div className="flex flex-wrap gap-3 sm:gap-4">
-            {techItems.map((tech) => (
+            {techItems.map((tech: string) => (
               <span
                 key={tech}
                 className="px-4 sm:px-6 py-2 sm:py-3 bg-paper text-ink-lighter rounded-full border border-ink/5 hover:border-accent/30 hover:text-accent transition-all text-sm sm:text-base"

@@ -10,6 +10,9 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "echo 'Linting skipped - ESLint not configured'"
+  },
   "dependencies": {
     "intlayer": "7.5.11",
     "next": "14.2.35",

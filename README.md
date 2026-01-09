@@ -188,7 +188,7 @@ Current setup has email + calendar link. To add a form:
 - Create API route in Next.js
 - Use email service (SendGrid, Resend, etc.)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 portfolio/
@@ -277,7 +277,7 @@ npm run build
 - Ensure classes are in content paths
 - Clear `.next` folder and rebuild
 
-## 📄 License
+## License
 
 This is a template for personal/commercial use. Customize freely!
 

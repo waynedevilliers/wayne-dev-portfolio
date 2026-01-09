@@ -32,7 +32,7 @@ export default function Work() {
 
         {/* Projects Grid */}
         <div className="space-y-10 sm:space-y-12">
-          {projects.map((project, index) => (
+          {projects.map((project: { title: string; description: string; tech: string[]; link: string; year: string }, index: number) => (
             <article
               key={project.title}
               className="group grid md:grid-cols-12 gap-6 sm:gap-8 items-center"
@@ -65,7 +65,7 @@ export default function Work() {
                   </span>
                   <span className="text-ink/20">•</span>
                   <div className="flex flex-wrap gap-2">
-                    {project.tech.slice(0, 2).map((tech) => (
+                    {project.tech.slice(0, 2).map((tech: string) => (
                       <span
                         key={tech}
                         className="text-xs px-3 py-1 bg-ink/5 text-ink-lighter rounded-full"

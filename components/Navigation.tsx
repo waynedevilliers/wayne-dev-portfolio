@@ -1,14 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { useIntlayer } from 'next-intlayer';
-import { useLocale } from 'next-intlayer';
-import { useChangeLocale } from 'next-intlayer';
+import { useIntlayer, useLocale } from 'react-intlayer';
 
 export default function Navigation() {
   const { services, work, process, contact } = useIntlayer('nav');
-  const { locale } = useLocale();
-  const { changeLocale } = useChangeLocale();
+  const { locale, setLocale } = useLocale();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -66,7 +63,7 @@ export default function Navigation() {
             {/* Language Switcher */}
             <div className="flex items-center gap-2 ml-2 lg:ml-4 border-l border-ink/10 pl-2 lg:pl-4">
               <button
-                onClick={() => changeLocale('en')}
+                onClick={() => setLocale('en')}
                 className={`text-xs font-medium transition-colors ${
                   locale === 'en' ? 'text-ink' : 'text-ink-lighter hover:text-ink'
                 }`}
@@ -75,7 +72,7 @@ export default function Navigation() {
               </button>
               <span className="text-ink/20">|</span>
               <button
-                onClick={() => changeLocale('de')}
+                onClick={() => setLocale('de')}
                 className={`text-xs font-medium transition-colors ${
                   locale === 'de' ? 'text-ink' : 'text-ink-lighter hover:text-ink'
                 }`}
@@ -90,18 +87,18 @@ export default function Navigation() {
             {/* Mobile Language Switcher */}
             <div className="flex items-center gap-1.5">
               <button
-                onClick={() => setLanguage('en')}
+                onClick={() => setLocale('en')}
                 className={`text-xs font-medium transition-colors ${
-                  language === 'en' ? 'text-ink' : 'text-ink-lighter'
+                  locale === 'en' ? 'text-ink' : 'text-ink-lighter'
                 }`}
               >
                 EN
               </button>
               <span className="text-ink/20 text-xs">|</span>
               <button
-                onClick={() => setLanguage('de')}
+                onClick={() => setLocale('de')}
                 className={`text-xs font-medium transition-colors ${
-                  language === 'de' ? 'text-ink' : 'text-ink-lighter'
+                  locale === 'de' ? 'text-ink' : 'text-ink-lighter'
                 }`}
               >
                 DE

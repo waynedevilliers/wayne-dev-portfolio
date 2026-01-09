@@ -66,7 +66,7 @@ export default function Services() {
 
         {/* Services Grid */}
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
-          {items.map((service, index) => (
+          {items.map((service: { title: string; description: string; icon: string }, index: number) => (
             <div
               key={service.title}
               className="group p-6 sm:p-8 bg-paper rounded-2xl border border-ink/5 hover:border-ink/10 transition-all hover-lift"
