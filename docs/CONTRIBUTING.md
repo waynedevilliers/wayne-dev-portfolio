@@ -43,11 +43,40 @@ npm run dev
 # Open http://localhost:3000
 ```
 
+## GitFlow Lite Workflow
+
+This project follows **GitFlow Lite** branching strategy:
+
+```
+main (Production)
+  ↑ (PR from dev)
+dev (Staging)
+  ↑ (PR from feature branches)
+feature/*, fix/*, etc.
+```
+
+**Key Rules:**
+- ✅ Always create feature branches from `dev`
+- ✅ Create PRs to `dev` first, test on staging
+- ✅ Create PR to `main` only from `dev` (for production release)
+- ❌ **NEVER work directly on `main` or `dev`**
+- ❌ **NEVER push directly to `main` or `dev`**
+
+### Environments
+- **Production (main → waynedev.dev)**: Fully protected, requires PR
+- **Staging (dev → wayneswebsites-git-dev.vercel.app)**: Protected, CI checks required
+- **Preview (feature/* → Vercel Preview URLs)**: Automatic for each PR
+
 ## Development Workflow
 
-### 1. Create a Branch
+### 1. Create a Branch from `dev`
 
 ```bash
+# Always start from dev
+git checkout dev
+git pull origin dev
+
+# Create your feature branch
 git checkout -b feature/your-feature-name
 # or
 git checkout -b fix/bug-description
@@ -60,6 +89,7 @@ git checkout -b fix/bug-description
 - `refactor/` - Code refactoring
 - `style/` - UI/styling changes
 - `test/` - Adding tests
+- `chore/` - Maintenance tasks
 
 ### 2. Make Changes
 
@@ -259,60 +289,111 @@ Closes #123"
 ### 1. Update Your Branch
 
 ```bash
-git checkout main
-git pull origin main
-git checkout your-branch
-git rebase main
+# First, make sure your feature branch has the latest changes from dev
+git checkout your-feature-branch
+git pull origin dev  # Or git fetch && git rebase origin/dev
 ```
 
-### 2. Create Pull Request
+### 2. Ensure CI Passes Locally
 
-**PR Title:** Follow commit message format
-```
-feat: add dark mode support
-```
+```bash
+# Run linter
+npm run lint
 
-**PR Description Template:**
+# Run build
+npm run build
 
-```markdown
-## Description
-Brief description of changes
-
-## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
-- [ ] Refactoring
-
-## Testing
-- [ ] Tested on mobile (375px)
-- [ ] Tested on tablet (768px)
-- [ ] Tested on desktop (1024px+)
-- [ ] Tested language switching
-- [ ] Build passes (`npm run build`)
-- [ ] Linter passes (`npm run lint`)
-
-## Screenshots
-[Add screenshots if UI changes]
-
-## Checklist
-- [ ] Code follows project style guidelines
-- [ ] Updated documentation if needed
-- [ ] Tested thoroughly
-- [ ] No console errors
+# Check TypeScript
+npx tsc --noEmit
 ```
 
-### 3. Code Review
+### 3. Push and Create Pull Request
 
-- Address reviewer feedback promptly
-- Keep PR scope focused (one feature/fix per PR)
-- Squash commits before merging if requested
+```bash
+git push origin your-feature-branch
+```
 
-### 4. Merge
+Then go to GitHub and create a PR. **Choose the correct base branch:**
+- Feature branches → base: `dev` (for testing/review)
+- `dev` branch → base: `main` (for production release)
 
-Once approved:
-- Squash and merge (preferred)
-- Delete branch after merge
+### 4. PR Description
+
+A **PR template** is automatically populated at `.github/pull_request_template.md`. Fill out:
+- Description of changes
+- Type of change (bug fix, feature, refactor, etc.)
+- Testing checklist (mobile, tablet, desktop, language switching)
+- Screenshots if UI changes
+- Confirmation that build & lint pass
+
+### 5. GitHub Actions CI Runs Automatically
+
+The CI workflow (`.github/workflows/ci.yml`) will:
+- ✅ Run linter (`npm run lint`)
+- ✅ Run TypeScript type check
+- ✅ Build project (`npm run build`)
+- ✅ Report status on PR
+
+**PR cannot be merged until CI passes.**
+
+### 6. Code Review & Vercel Preview
+
+- GitHub Actions status must be ✅
+- Vercel automatically creates preview URL for the feature branch
+- Share preview URL with reviewers
+- Test on preview before approving
+
+### 7. Address Feedback
+
+- Make requested changes
+- Commit with clear message
+- Push to same branch (updates PR automatically)
+- CI runs again automatically
+
+### 8. Merge
+
+Once approved and CI passes:
+- **Squash and merge** (preferred) - keeps history clean
+- or **Rebase and merge** - preserves individual commits
+- ✅ **Delete branch after merge** (GitHub offers this option)
+
+### 9. If Merging to `dev`
+
+- PR approved ✅
+- CI passed ✅
+- Test on Vercel preview URL ✅
+- Merge to `dev`
+- Vercel auto-deploys to staging: https://wayneswebsites-git-dev.vercel.app
+
+### 10. If Merging `dev` to `main`
+
+- Test on staging (dev environment) first ✅
+- Create PR from `dev` → `main`
+- Verify CI passes ✅
+- Merge to `main`
+- Vercel auto-deploys to production: https://waynedev.dev
+
+## Branch Protection Rules
+
+### Main Branch (Production)
+- ✅ Requires PR before merging
+- ✅ Requires 1 approval
+- ✅ Requires CI checks to pass
+- ✅ Requires branch to be up to date
+- ❌ No direct pushes allowed
+- ❌ No force pushes
+- ❌ Cannot be deleted
+
+### Dev Branch (Staging)
+- ✅ Requires CI checks to pass
+- ✅ Requires branch to be up to date
+- ⚠️ Admin can bypass for hotfixes
+- ❌ No force pushes
+- ❌ Cannot be deleted
+
+### Feature Branches
+- No restrictions
+- Delete automatically after merge (recommended)
 
 ## Project Structure
 
