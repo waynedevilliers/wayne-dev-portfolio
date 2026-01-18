@@ -15,6 +15,112 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - React 18
 - React Context API (language switching)
 
+## Git Workflow (GitFlow Lite)
+
+**CRITICAL: Never work directly on main branch. Always create feature branches from dev.**
+
+### Branch Structure
+```
+main (production) ← waynedev.dev
+  ↑
+dev (staging) ← wayneswebsites-git-dev.vercel.app
+  ↑
+feature/* branches ← Vercel preview URLs
+```
+
+### Workflow
+1. **Create feature branch from dev:**
+   ```bash
+   git checkout dev
+   git pull origin dev
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Work and commit (Conventional Commits):**
+   ```bash
+   git add .
+   git commit -m "feat: add new feature"
+   git commit -m "fix: resolve bug"
+   ```
+
+3. **Push and create PR to dev:**
+   ```bash
+   git push origin feature/your-feature-name
+   # Create PR on GitHub (goes to dev, gets preview URL)
+   ```
+
+4. **Test on staging:**
+   - CI workflow runs automatically (lint, build, type-check)
+   - Vercel creates preview URL
+   - Review PR, test changes
+   - Merge to dev when approved
+
+5. **Test on staging environment:**
+   - Visit: https://wayneswebsites-git-dev.vercel.app
+   - Verify changes work as expected
+
+6. **Release to production:**
+   - Create PR from dev → main
+   - Require passing CI checks
+   - Merge to main
+   - Automatically deploys to: https://waynedev.dev
+
+### Branch Naming Conventions
+- `feature/` - New features
+- `fix/` - Bug fixes
+- `docs/` - Documentation updates
+- `refactor/` - Code refactoring
+- `style/` - UI/styling changes
+- `test/` - Adding tests
+- `chore/` - Maintenance tasks
+
+### Commit Message Format (Conventional Commits)
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+Examples:
+```bash
+git commit -m "feat: add dark mode support"
+git commit -m "fix: resolve language switcher bug"
+git commit -m "docs: update README"
+git commit -m "refactor: extract button component"
+```
+
+### Branch Protection
+- **main**: Fully protected
+  - Requires PR review
+  - Requires CI checks to pass
+  - No direct pushes allowed
+  - No force pushes
+
+- **dev**: Protected with CI checks
+  - Requires CI workflow to pass
+  - Allows admins to bypass for hotfixes
+  - Delete feature branches after merge
+
+### Hotfix Process (Critical bugs on production)
+```bash
+# Create hotfix from main
+git checkout main
+git pull origin main
+git checkout -b hotfix/critical-bug
+
+# Fix and commit
+git commit -m "fix: resolve critical issue"
+git push origin hotfix/critical-bug
+
+# Create PR directly to main
+# After merge, sync dev:
+git checkout dev
+git merge main
+git push origin dev
+```
+
 ## Development Commands
 
 ```bash
