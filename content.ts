@@ -34,6 +34,7 @@ interface Content {
       tech: string[];
       link: string;
       year: string;
+      imageFileName?: string;
     }>;
     linkText: string;
     comingSoonText: string;
@@ -115,6 +116,7 @@ const contentEn: Content = {
         tech: ['WordPress', 'PHP', 'JavaScript', 'Custom Plugins'],
         link: 'https://ellustudios.com',
         year: 'Current',
+        imageFileName: 'ellu-studios-fashion-assistant.png',
       },
       {
         title: 'Culture Academy',
@@ -131,11 +133,12 @@ const contentEn: Content = {
         year: '2024-2025',
       },
       {
-        title: 'ELLU Studios Fashion Assistant',
-        description: 'AI-powered chatbot specialized in fashion design education. RAG architecture with GPT-4o Mini for student support in pattern construction and design courses. Real-time chat with session persistence and conversation export.',
-        tech: ['Next.js', 'OpenAI GPT-4o', 'RAG', 'TypeScript'],
+        title: 'Landing Pages',
+        description: 'High-converting landing pages and custom web designs. Responsive layouts, fast loading times, and optimized for conversions. Built with React, Next.js, or WordPress. Includes Brevo email integration, email templates, and marketing automation campaigns.',
+        tech: ['Next.js', 'React', 'Brevo', 'Email Marketing'],
         link: 'https://ellu-studios-chatbot.vercel.app/',
         year: '2025',
+        imageFileName: '/screenshots/ellustudios_landing_page.png',
       },
       {
         title: 'Mainflug Drone Services',
@@ -251,6 +254,7 @@ const contentDe: Content = {
         tech: ['WordPress', 'PHP', 'JavaScript', 'Custom Plugins'],
         link: 'https://ellustudios.com',
         year: 'Aktuell',
+        imageFileName: 'ellu-studios-fashion-assistant.png',
       },
       {
         title: 'Culture Academy',
@@ -267,11 +271,12 @@ const contentDe: Content = {
         year: '2024-2025',
       },
       {
-        title: 'ELLU Studios Fashion Assistant',
-        description: 'KI-gestützter Chatbot spezialisiert auf Modedesign-Ausbildung. RAG-Architektur mit GPT-4o Mini zur Unterstützung von Studenten bei Schnittkonstruktion und Designkursen. Echtzeit-Chat mit Sitzungsspeicherung und Konversationsexport.',
-        tech: ['Next.js', 'OpenAI GPT-4o', 'RAG', 'TypeScript'],
+        title: 'Landing Pages',
+        description: 'Hochkonvertierende Landing Pages und Custom Web Designs. Responsive Layouts, schnelle Ladezeiten und conversion-optimiert. Gebaut mit React, Next.js oder WordPress. Umfasst Brevo E-Mail-Integration, E-Mail-Vorlagen und Marketing-Automatisierungskampagnen.',
+        tech: ['Next.js', 'React', 'Brevo', 'Email Marketing'],
         link: 'https://ellu-studios-chatbot.vercel.app/',
         year: '2025',
+        imageFileName: '/screenshots/ellustudios_landing_page.png',
       },
       {
         title: 'Mainflug Drohnen-Services',

@@ -8,8 +8,16 @@ export default function Work() {
   const { content } = useLanguage();
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
-  // Generate image filename from project title
-  const getImagePath = (title: string) => {
+  // Generate image filename from project title or use custom imageFileName
+  const getImagePath = (title: string, customImageFileName?: string) => {
+    if (customImageFileName) {
+      // If path starts with /, treat as absolute path within /images/
+      if (customImageFileName.startsWith('/')) {
+        return `/images${customImageFileName}`;
+      }
+      // Otherwise assume it's in the projects folder
+      return `/images/projects/${customImageFileName}`;
+    }
     const filename = title
       .toLowerCase()
       .replace(/\s+/g, '-')
@@ -42,7 +50,7 @@ export default function Work() {
               <div className="md:col-span-5 aspect-[4/3] bg-gradient-to-br from-sage/20 to-accent/10 rounded-2xl overflow-hidden border border-ink/5 relative">
                 {!imageErrors[index] ? (
                   <Image
-                    src={getImagePath(project.title)}
+                    src={getImagePath(project.title, project.imageFileName)}
                     alt={project.title}
                     fill
                     priority={index === 0}
