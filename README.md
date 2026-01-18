@@ -44,6 +44,96 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 The site will auto-reload when you make changes!
 
+## 🌿 Git Workflow (GitFlow Lite)
+
+This project uses **GitFlow Lite** for version control. Follow this workflow for all changes:
+
+### Branch Structure
+```
+main (Production)          → waynedev.dev (LIVE)
+  ↑ (PR from dev)
+dev (Staging)             → wayneswebsites-git-dev.vercel.app
+  ↑ (PR from feature branches)
+feature/*, fix/*, etc.    → Vercel preview URLs
+```
+
+### Development Workflow
+
+**Step 1: Create Feature Branch from Dev**
+```bash
+git checkout dev
+git pull origin dev
+git checkout -b feature/your-feature-name
+# Examples: feature/add-contact-form, fix/language-bug, docs/update-readme
+```
+
+**Step 2: Make Changes & Commit**
+```bash
+# Make your changes
+git add .
+git commit -m "feat: describe your change"
+# Use: feat, fix, docs, refactor, style, test, chore
+```
+
+**Step 3: Push to Remote**
+```bash
+git push origin feature/your-feature-name
+```
+
+**Step 4: Create PR to Dev (Staging)**
+- Go to GitHub
+- Create PR: feature branch → `dev`
+- GitHub Actions CI runs automatically ✅
+- Review "Files changed"
+- Merge when CI passes ✅
+
+**Step 5: Test on Staging**
+- After merge, Vercel deploys to: https://wayneswebsites-git-dev.vercel.app
+- Wait 2-3 minutes for deployment
+- Test changes thoroughly
+
+**Step 6: PR from Dev → Main (Production)**
+- Create PR: `dev` → `main`
+- GitHub Actions CI validates again ✅
+- Review changes one final time
+- Merge when CI passes ✅
+
+**Step 7: Deploy to Production**
+- Vercel auto-deploys to: https://waynedev.dev 🎉
+- Your changes are now live!
+
+### Branch Naming Conventions
+- `feature/` - New features
+- `fix/` - Bug fixes
+- `docs/` - Documentation updates
+- `refactor/` - Code refactoring
+- `style/` - UI/styling changes
+- `test/` - Adding tests
+- `chore/` - Maintenance tasks
+
+### Commit Message Format (Conventional Commits)
+```
+feat: add new feature
+fix: resolve bug
+docs: update documentation
+refactor: improve code structure
+style: update spacing
+test: add unit tests
+chore: update dependencies
+```
+
+### Branch Protection Rules
+- **main**: Fully protected (no direct pushes, CI required)
+- **dev**: CI checks required, auto-deploy to staging
+- **feature branches**: No restrictions, delete after merge
+
+### GitHub Actions CI/CD
+- Automatically runs on all PRs
+- Checks: linting, type checking, build validation
+- **Must pass before merging**
+
+For detailed instructions, see: [`docs/WORKFLOW.md`](./docs/WORKFLOW.md)
+
 ##  Customization Guide
 
 ### 1. Update Your Content
